@@ -43,8 +43,8 @@ DHT dht(DHT_PIN,DHTTYPE);
 #define MQ2_PIN 35
 #define LDR_PIN 34
 #define PIR_PIN 18
-#define FLAME_PIN 19
-#define RAIN_PIN 35
+#define FLAME_PIN 13
+#define RAIN_PIN 15
 
 
 // Ultrasonic
@@ -252,6 +252,67 @@ int flame = analogRead(FLAME_PIN);
 
 
 long distance=getDistance();
+// =================== SERIAL MONITOR ===================
+
+Serial.println("--------------------------------------");
+
+Serial.print("Mode: ");
+Serial.println(homeMode ? "HOME" : "AWAY");
+
+Serial.print("Temperature: ");
+Serial.print(temperature);
+Serial.println(" C");
+
+Serial.print("Humidity: ");
+Serial.print(humidity);
+Serial.println(" %");
+
+Serial.print("Gas Value: ");
+Serial.println(gas);
+
+Serial.print("Light Value: ");
+Serial.println(light);
+
+Serial.print("Rain Value: ");
+Serial.println(rain);
+
+Serial.print("Flame Value: ");
+Serial.println(flame);
+
+Serial.print("Motion: ");
+Serial.println(motion ? "DETECTED" : "NONE");
+
+Serial.print("Distance: ");
+Serial.print(distance);
+Serial.println(" cm");
+
+Serial.print("Door: ");
+if(distance < 20 && homeMode)
+  Serial.println("OPEN");
+else
+  Serial.println("CLOSED");
+
+Serial.print("Fan: ");
+if(temperature > 25)
+  Serial.println("ON");
+else
+  Serial.println("OFF");
+
+Serial.print("Gas Alert: ");
+if(gas > 2000)
+  Serial.println("YES");
+else
+  Serial.println("NO");
+
+Serial.print("Fire Alert: ");
+if(flame > 2000)
+  Serial.println("YES");
+else
+  Serial.println("NO");
+
+Serial.println("--------------------------------------");
+
+// =======================================================
 
 
 
@@ -303,6 +364,9 @@ display.println(light);
 display.print("Dist:");
 display.print(distance);
 display.println("cm");
+
+
+
 
 
 display.display();
