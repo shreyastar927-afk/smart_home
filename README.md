@@ -219,3 +219,7 @@ The OLED display and Serial Monitor continuously display:
 - Arduino Framework
 - Wokwi Simulator
 - Embedded C/C++
+
+  ## Circuit diagram
+  <img width="1086" height="750" alt="image" src="https://github.com/user-attachments/assets/fba29822-fff5-487f-8271-c89af9496311" />
+
